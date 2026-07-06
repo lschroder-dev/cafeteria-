@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- EDITAR: nombre del negocio en el título -->
+<title>Cortado — Café de especialidad | Lomas de Zamora</title>
+<meta name="description" content="Café de especialidad en Lomas de Zamora. Tostamos en casa, métodos filtrados, espresso de origen y pastelería fresca. Un lugar para tomarse el café en serio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.pexels.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --crema:#F3EBDE;        /* crema de espresso / fondo */
+  --crema-osc:#E8DCC8;
+  --grano:#2A1B12;        /* grano tostado oscuro */
+  --grano-medio:#4A3225;
+  --tostado:#8C5A34;      /* tueste medio */
+  --tostado-claro:#B98155;
+  --verde-oliva:#5E5A3C;  /* café verde sin tostar */
+  --tinta:#211610;
+  --leche:#FBF7F0;
+
+  --serif:'Fraunces', serif;
+  --sans:'Inter', sans-serif;
+  --mono:'JetBrains Mono', monospace;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{max-width:100%;overflow-x:hidden}
+body{
+  font-family:var(--sans);
+  color:var(--tinta);
+  background:var(--crema);
+  line-height:1.6;
+  font-size:16.5px;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+:focus-visible{outline:2.5px solid var(--tostado);outline-offset:3px;border-radius:3px}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+}
+
+/* ---------- HEADER ---------- */
+header{
+  position:sticky;top:0;z-index:200;
+  background:rgba(243,235,222,.85);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(42,27,18,.1);
+}
+.header-inner{
+  max-width:1160px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 26px;
+}
+.logo{display:flex;align-items:center;gap:11px;color:var(--grano)}
+.logo-marca{
+  font-family:var(--serif);font-weight:900;font-size:1.5rem;letter-spacing:-.5px;
+  font-optical-sizing:auto;
+}
+.logo-punto{width:8px;height:8px;border-radius:50%;background:var(--tostado);margin-bottom:9px}
+
+nav ul{display:flex;list-style:none;gap:32px;align-items:center}
+nav a{color:var(--grano-medio);font-weight:500;font-size:.92rem;position:relative;transition:color .2s}
+nav a:not(.btn-reserva)::after{
+  content:'';position:absolute;left:0;bottom:-4px;width:0;height:1.5px;
+  background:var(--tostado);transition:width .25s;
+}
+nav a:hover{color:var(--grano)}
+nav a:not(.btn-reserva):hover::after{width:100%}
+.btn-reserva{
+  background:var(--grano);color:var(--crema);
+  padding:10px 22px;border-radius:2px;font-weight:500;font-size:.88rem;
+  transition:background .2s;letter-spacing:.3px;
+}
+.btn-reserva:hover{background:var(--tostado);color:var(--leche)}
+
+.hamburguesa{display:none;flex-direction:column;gap:5px;padding:8px}
+.hamburguesa span{width:25px;height:2px;background:var(--grano);border-radius:2px;transition:transform .25s,opacity .25s}
+.hamburguesa.abierto span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburguesa.abierto span:nth-child(2){opacity:0}
+.hamburguesa.abierto span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ---------- HERO ---------- */
+.hero{
+  max-width:1160px;margin:0 auto;
+  padding:70px 26px 40px;
+  display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;
+}
+.hero-eyebrow{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:3px;text-transform:uppercase;
+  color:var(--tostado);margin-bottom:26px;display:flex;align-items:center;gap:12px;
+}
+.hero-eyebrow::before{content:'';width:34px;height:1px;background:var(--tostado)}
+.hero h1{
+  font-family:var(--serif);font-weight:400;
+  font-size:clamp(2.8rem,6vw,4.9rem);
+  line-height:1.0;letter-spacing:-1.5px;margin-bottom:28px;
+  font-optical-sizing:auto;
+}
+.hero h1 em{font-style:italic;font-weight:500;color:var(--tostado)}
+.hero-desc{font-size:1.12rem;color:var(--grano-medio);max-width:46ch;margin-bottom:36px}
+.hero-ctas{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:44px}
+.btn-primario{
+  background:var(--grano);color:var(--crema);
+  padding:15px 32px;border-radius:2px;font-weight:500;font-size:.98rem;
+  transition:background .2s,transform .15s;display:inline-block;letter-spacing:.3px;
+}
+.btn-primario:hover{background:var(--tostado);color:var(--leche);transform:translateY(-2px)}
+.btn-texto{
+  color:var(--grano);font-weight:500;font-size:.98rem;
+  border-bottom:1.5px solid var(--tostado);padding-bottom:3px;transition:color .2s;
+}
+.btn-texto:hover{color:var(--tostado)}
+
+.hero-horario{
+  display:flex;gap:34px;border-top:1px solid rgba(42,27,18,.15);padding-top:26px;
+}
+.horario-item strong{
+  font-family:var(--serif);font-weight:600;font-size:1.05rem;display:block;letter-spacing:-.3px;
+}
+.horario-item span{font-family:var(--mono);font-size:.72rem;color:var(--tostado);text-transform:uppercase;letter-spacing:1.5px}
+
+/* imagen del hero */
+.hero-foto{
+  position:relative;border-radius:3px;overflow:hidden;
+  aspect-ratio:4/4.7;box-shadow:0 24px 60px rgba(42,27,18,.22);
+}
+.hero-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-foto .sello{
+  position:absolute;top:20px;right:20px;
+  width:96px;height:96px;border-radius:50%;
+  background:rgba(243,235,222,.94);backdrop-filter:blur(4px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-family:var(--serif);text-align:center;line-height:1.05;
+  transform:rotate(-8deg);
+}
+.hero-foto .sello strong{font-size:1.5rem;font-weight:900;color:var(--grano)}
+.hero-foto .sello span{font-family:var(--mono);font-size:.5rem;letter-spacing:1px;text-transform:uppercase;color:var(--tostado);margin-top:2px}
+
+/* ---------- MARQUESINA GRANOS (firma) ---------- */
+.marquesina{
+  background:var(--grano);color:var(--crema);
+  padding:17px 0;overflow:hidden;white-space:nowrap;
+  border-top:1px solid var(--grano-medio);border-bottom:1px solid var(--grano-medio);
+}
+.marquesina-track{display:inline-block;animation:desliz 28s linear infinite}
+.marquesina-track span{
+  font-family:var(--serif);font-style:italic;font-size:1.15rem;margin:0 8px;
+}
+.marquesina-track .sep{font-family:var(--mono);font-style:normal;color:var(--tostado-claro);font-size:.9rem;margin:0 20px}
+@keyframes desliz{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ---------- SECCIONES ---------- */
+section{padding:96px 26px}
+.contenedor{max-width:1160px;margin:0 auto}
+.encabezado{max-width:640px;margin-bottom:60px}
+.etiqueta{
+  font-family:var(--mono);font-size:.7rem;letter-spacing:2.8px;text-transform:uppercase;
+  color:var(--tostado);display:flex;align-items:center;gap:12px;margin-bottom:20px;
+}
+.etiqueta::before{content:'';width:26px;height:1px;background:var(--tostado)}
+.titulo{
+  font-family:var(--serif);font-weight:400;
+  font-size:clamp(2rem,4vw,3.1rem);letter-spacing:-1px;line-height:1.08;
+  font-optical-sizing:auto;
+}
+.titulo em{font-style:italic;color:var(--tostado)}
+.sub{color:var(--grano-medio);font-size:1.08rem;margin-top:16px}
+
+/* ---------- CARTA / MENÚ ---------- */
+.carta{display:grid;grid-template-columns:1fr 1fr;gap:14px 64px}
+.carta-grupo h3{
+  font-family:var(--serif);font-weight:600;font-size:1.4rem;letter-spacing:-.3px;
+  padding-bottom:14px;margin-bottom:8px;border-bottom:2px solid var(--grano);
+  display:flex;justify-content:space-between;align-items:baseline;
+}
+.carta-grupo h3 .nota{font-family:var(--mono);font-size:.62rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--tostado);font-weight:400}
+.item-carta{
+  display:flex;align-items:baseline;gap:14px;padding:14px 0;
+  border-bottom:1px dotted rgba(42,27,18,.22);
+}
+.item-carta:last-child{border-bottom:none}
+.item-info{flex:1}
+.item-info .nom{font-family:var(--serif);font-weight:500;font-size:1.08rem;letter-spacing:-.2px}
+.item-info .desc{font-size:.86rem;color:var(--grano-medio);margin-top:2px}
+.item-precio{font-family:var(--mono);font-size:.92rem;color:var(--grano);font-weight:500;flex-shrink:0}
+
+/* ---------- MÉTODO / PROCESO ---------- */
+.seccion-metodo{background:var(--grano);color:var(--crema)}
+.seccion-metodo .titulo{color:var(--crema)}
+.seccion-metodo .sub{color:var(--crema-osc)}
+.seccion-metodo .titulo em{color:var(--tostado-claro)}
+.pasos{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:20px}
+.paso{position:relative;padding-top:34px}
+.paso .num{
+  position:absolute;top:0;left:0;
+  font-family:var(--serif);font-style:italic;font-size:3.2rem;font-weight:400;
+  color:var(--tostado);opacity:.55;line-height:.8;
+}
+.paso h3{font-family:var(--serif);font-weight:600;font-size:1.35rem;margin-bottom:10px;letter-spacing:-.3px;position:relative}
+.paso p{font-size:.95rem;color:var(--crema-osc);line-height:1.6}
+
+/* ---------- GALERÍA ---------- */
+.galeria{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:210px;gap:14px}
+.galeria figure{position:relative;overflow:hidden;border-radius:3px}
+.galeria img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.galeria figure:hover img{transform:scale(1.06)}
+.galeria .alta{grid-row:span 2}
+.galeria .ancha{grid-column:span 2}
+
+/* ---------- HISTORIA (foto + texto) ---------- */
+.grilla-historia{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.foto-historia{position:relative;border-radius:3px;overflow:hidden;aspect-ratio:4/4.4;box-shadow:0 20px 50px rgba(42,27,18,.2)}
+.foto-historia img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cita-historia{
+  font-family:var(--serif);font-style:italic;font-weight:400;
+  font-size:1.7rem;line-height:1.35;letter-spacing:-.5px;color:var(--grano);
+  margin:24px 0;
+}
+.historia p{color:var(--grano-medio);font-size:1.02rem;margin-bottom:16px}
+.firma{font-family:var(--serif);font-weight:600;font-size:1.05rem;margin-top:10px}
+.firma span{display:block;font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--tostado);font-weight:400;margin-top:3px}
+
+/* ---------- VISITANOS ---------- */
+.seccion-visita{background:var(--crema-osc)}
+.grilla-visita{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.tarjeta-visita{
+  background:var(--leche);border-radius:3px;padding:34px 30px;
+  border:1px solid rgba(42,27,18,.08);
+}
+.tarjeta-visita .v-icono{
+  width:44px;height:44px;border-radius:50%;margin-bottom:20px;
+  background:var(--grano);display:flex;align-items:center;justify-content:center;
+}
+.tarjeta-visita .v-icono svg{width:22px;height:22px}
+.tarjeta-visita h3{font-family:var(--mono);font-size:.7rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--tostado);margin-bottom:12px}
+.tarjeta-visita p{font-size:1.05rem;color:var(--grano);font-weight:500;font-family:var(--serif)}
+.tarjeta-visita p + p{margin-top:4px;font-family:var(--sans);font-size:.92rem;color:var(--grano-medio);font-weight:400}
+
+/* ---------- CTA ---------- */
+.cta-final{
+  background:
+    linear-gradient(rgba(42,27,18,.82),rgba(42,27,18,.86)),
+    url('https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover;
+  color:var(--crema);text-align:center;
+}
+.cta-final .titulo{color:var(--crema);margin-bottom:18px}
+.cta-final .titulo em{color:var(--tostado-claro)}
+.cta-final p{color:var(--crema-osc);font-size:1.1rem;max-width:50ch;margin:0 auto 34px}
+
+/* ---------- FOOTER ---------- */
+footer{background:var(--grano);color:var(--crema-osc);padding:44px 26px}
+.footer-inner{max-width:1160px;margin:0 auto;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
+.footer-marca{font-family:var(--serif);font-weight:900;font-size:1.4rem;color:var(--crema)}
+.footer-inner small{font-size:.82rem;color:var(--tostado-claro)}
+.credito{display:flex;align-items:center;gap:8px}
+.credito-label{font-family:var(--mono);font-size:.64rem;letter-spacing:2px;text-transform:uppercase;color:#8A7358}
+.credito a{font-family:var(--serif);font-weight:600;font-size:.95rem;color:var(--tostado-claro);transition:color .2s}
+.credito a:hover{color:var(--crema)}
+
+/* ---------- CHATBOT ---------- */
+.chat-boton{
+  position:fixed;bottom:24px;right:24px;z-index:300;
+  width:60px;height:60px;border-radius:50%;
+  background:var(--grano);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 10px 30px rgba(42,27,18,.4);
+  transition:transform .2s,background .2s;
+}
+.chat-boton:hover{transform:scale(1.08);background:var(--tostado)}
+.chat-boton svg{width:28px;height:28px}
+
+.chat-panel{
+  position:fixed;bottom:96px;right:24px;z-index:300;
+  width:min(370px, calc(100vw - 48px));
+  height:min(520px, calc(100vh - 135px));
+  background:var(--leche);border-radius:6px;
+  box-shadow:0 26px 70px rgba(42,27,18,.4);
+  display:none;flex-direction:column;overflow:hidden;
+  border:1px solid var(--crema-osc);
+}
+.chat-panel.abierto{display:flex}
+.chat-header{
+  background:var(--grano);color:var(--crema);
+  padding:17px 19px;display:flex;align-items:center;gap:12px;
+}
+.chat-header .punto{width:8px;height:8px;border-radius:50%;background:#7BC47F;flex-shrink:0;box-shadow:0 0 8px rgba(123,196,127,.7)}
+.chat-header-texto{line-height:1.25;flex:1}
+.chat-header-texto strong{font-family:var(--serif);font-weight:600;font-size:1rem;display:block}
+.chat-header-texto span{font-size:.72rem;color:var(--tostado-claro)}
+.chat-cerrar{color:var(--crema-osc);font-size:1.25rem;padding:4px 8px;line-height:1;transition:color .2s}
+.chat-cerrar:hover{color:var(--crema)}
+
+.chat-mensajes{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:var(--crema)}
+.msg{max-width:85%;padding:11px 15px;border-radius:14px;font-size:.92rem;line-height:1.45;white-space:pre-wrap;word-wrap:break-word}
+.msg.bot{background:var(--leche);border:1px solid var(--crema-osc);border-bottom-left-radius:4px;align-self:flex-start}
+.msg.usuario{background:var(--grano);color:var(--crema);border-bottom-right-radius:4px;align-self:flex-end}
+.msg.escribiendo{color:#9a8776;font-style:italic}
+
+.chat-input-zona{display:flex;gap:8px;padding:13px;border-top:1px solid var(--crema-osc);background:var(--leche)}
+.chat-input-zona input{
+  flex:1;border:1.5px solid var(--crema-osc);border-radius:20px;
+  padding:11px 17px;font-family:var(--sans);font-size:.92rem;outline:none;transition:border-color .2s;min-width:0;background:var(--crema);
+}
+.chat-input-zona input:focus{border-color:var(--tostado)}
+.chat-enviar{background:var(--grano);color:var(--crema);border-radius:20px;padding:0 19px;font-weight:500;font-size:.88rem;transition:background .2s;flex-shrink:0}
+.chat-enviar:hover{background:var(--tostado)}
+.chat-enviar:disabled{background:#b3a595;cursor:not-allowed}
+
+/* ---------- ORIGEN DE LOS GRANOS ---------- */
+.seccion-origen{background:var(--crema-osc)}
+.grilla-origen{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.origen-texto p{color:var(--grano-medio);font-size:1.05rem;margin-bottom:18px}
+.origenes-lista{display:flex;flex-direction:column;gap:2px;margin-top:28px}
+.origen-fila{
+  display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;
+  padding:18px 0;border-bottom:1px solid rgba(42,27,18,.14);
+}
+.origen-fila:last-child{border-bottom:none}
+.origen-bandera{font-size:1.7rem;line-height:1}
+.origen-info .pais{font-family:var(--serif);font-weight:600;font-size:1.12rem;letter-spacing:-.2px}
+.origen-info .notas{font-size:.85rem;color:var(--grano-medio);margin-top:2px}
+.origen-tueste{
+  font-family:var(--mono);font-size:.62rem;letter-spacing:1.5px;text-transform:uppercase;
+  padding:6px 12px;border-radius:2px;background:var(--grano);color:var(--crema);white-space:nowrap;
+}
+.origen-tueste.medio{background:var(--tostado)}
+.origen-tueste.claro{background:var(--verde-oliva)}
+.foto-origen{position:relative;border-radius:3px;overflow:hidden;aspect-ratio:4/4.5;box-shadow:0 20px 50px rgba(42,27,18,.2)}
+.foto-origen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+/* ---------- GRANOS PARA LLEVAR (tienda) ---------- */
+.grilla-tienda{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.producto{
+  background:var(--leche);border-radius:3px;overflow:hidden;
+  border:1px solid rgba(42,27,18,.08);transition:transform .2s,box-shadow .2s;
+}
+.producto:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(42,27,18,.14)}
+.producto-foto{aspect-ratio:4/3;overflow:hidden;position:relative;background:var(--crema-osc)}
+.producto-foto img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.producto:hover .producto-foto img{transform:scale(1.05)}
+.producto-badge{
+  position:absolute;top:14px;left:14px;
+  font-family:var(--mono);font-size:.6rem;letter-spacing:1.5px;text-transform:uppercase;
+  background:var(--grano);color:var(--crema);padding:6px 12px;border-radius:2px;
+}
+.producto-cuerpo{padding:24px}
+.producto-cuerpo .p-origen{font-family:var(--mono);font-size:.64rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--tostado);margin-bottom:8px}
+.producto-cuerpo h3{font-family:var(--serif);font-weight:600;font-size:1.3rem;letter-spacing:-.3px;margin-bottom:8px}
+.producto-cuerpo .p-desc{font-size:.9rem;color:var(--grano-medio);margin-bottom:18px;line-height:1.5}
+.producto-precio{display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1px solid rgba(42,27,18,.12)}
+.producto-precio .precio{font-family:var(--serif);font-weight:600;font-size:1.25rem;color:var(--grano)}
+.producto-precio .peso{font-family:var(--mono);font-size:.7rem;color:var(--grano-medio);letter-spacing:1px}
+
+/* ---------- EVENTOS / CATAS ---------- */
+.seccion-eventos{background:var(--grano);color:var(--crema)}
+.seccion-eventos .titulo{color:var(--crema)}
+.seccion-eventos .titulo em{color:var(--tostado-claro)}
+.seccion-eventos .sub{color:var(--crema-osc)}
+.grilla-eventos{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:20px}
+.evento{
+  border:1px solid rgba(185,129,85,.35);border-radius:3px;padding:32px;
+  display:flex;gap:24px;align-items:flex-start;transition:background .2s,border-color .2s;
+}
+.evento:hover{background:rgba(185,129,85,.08);border-color:var(--tostado-claro)}
+.evento-fecha{
+  flex-shrink:0;text-align:center;border-right:1px solid rgba(185,129,85,.3);padding-right:24px;
+}
+.evento-fecha .dia{font-family:var(--serif);font-weight:900;font-size:2rem;color:var(--tostado-claro);line-height:1}
+.evento-fecha .mes{font-family:var(--mono);font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--crema-osc);margin-top:4px}
+.evento-info h3{font-family:var(--serif);font-weight:600;font-size:1.25rem;margin-bottom:8px;letter-spacing:-.3px}
+.evento-info p{font-size:.92rem;color:var(--crema-osc);line-height:1.55}
+.evento-info .hora{font-family:var(--mono);font-size:.7rem;letter-spacing:1px;color:var(--tostado-claro);text-transform:uppercase;margin-top:12px;display:block}
+
+/* ---------- RESEÑAS ---------- */
+.grilla-resenas{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.resena{
+  background:var(--leche);border-radius:3px;padding:32px 30px;
+  border:1px solid rgba(42,27,18,.08);display:flex;flex-direction:column;
+}
+.resena-estrellas{color:var(--tostado);font-size:1rem;letter-spacing:2px;margin-bottom:16px}
+.resena-texto{font-family:var(--serif);font-style:italic;font-size:1.12rem;line-height:1.45;color:var(--grano);margin-bottom:20px;flex:1}
+.resena-autor{display:flex;align-items:center;gap:12px}
+.resena-avatar{
+  width:42px;height:42px;border-radius:50%;flex-shrink:0;
+  background:var(--grano);color:var(--crema);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-weight:600;font-size:1.1rem;
+}
+.resena-autor .nom{font-weight:600;font-size:.95rem;color:var(--grano)}
+.resena-autor .fuente{font-family:var(--mono);font-size:.66rem;color:var(--grano-medio);letter-spacing:.5px}
+
+/* ---------- FAQ ---------- */
+.faq-lista{max-width:820px;margin:0 auto}
+.faq-item{border-bottom:1px solid rgba(42,27,18,.15)}
+.faq-pregunta{
+  width:100%;text-align:left;padding:26px 0;
+  display:flex;justify-content:space-between;align-items:center;gap:20px;
+  font-family:var(--serif);font-weight:500;font-size:1.2rem;color:var(--grano);letter-spacing:-.3px;
+  transition:color .2s;
+}
+.faq-pregunta:hover{color:var(--tostado)}
+.faq-signo{flex-shrink:0;font-size:1.5rem;color:var(--tostado);transition:transform .25s;line-height:1;font-weight:300}
+.faq-item.abierto .faq-signo{transform:rotate(45deg)}
+.faq-respuesta{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease}
+.faq-item.abierto .faq-respuesta{max-height:400px;padding-bottom:26px}
+.faq-respuesta p{color:var(--grano-medio);font-size:1rem;line-height:1.6}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:920px){
+  .grilla-origen{grid-template-columns:1fr;gap:36px}
+  .foto-origen{aspect-ratio:16/11}
+  .grilla-tienda{grid-template-columns:1fr;gap:20px}
+  .grilla-eventos{grid-template-columns:1fr}
+  .grilla-resenas{grid-template-columns:1fr}
+  .hero{grid-template-columns:1fr;gap:40px;padding:52px 26px 36px}
+  .hero-foto{aspect-ratio:16/12;max-height:440px}
+  .carta{grid-template-columns:1fr;gap:8px 0}
+  .carta-grupo{margin-bottom:32px}
+  .pasos{grid-template-columns:1fr;gap:36px}
+  .galeria{grid-template-columns:repeat(2,1fr);grid-auto-rows:180px}
+  .grilla-historia{grid-template-columns:1fr;gap:40px}
+  .foto-historia{aspect-ratio:16/11}
+  .grilla-visita{grid-template-columns:1fr;gap:16px}
+}
+@media (max-width:600px){
+  nav ul{
+    display:none;position:absolute;top:100%;left:0;right:0;
+    background:var(--crema);flex-direction:column;gap:0;
+    padding:12px 0 18px;border-bottom:1px solid rgba(42,27,18,.15);
+  }
+  nav ul.abierto{display:flex}
+  nav li{width:100%;text-align:center}
+  nav a{display:block;padding:14px 20px}
+  nav a:not(.btn-reserva)::after{display:none}
+  .btn-reserva{margin:10px auto 0;display:inline-block}
+  .hamburguesa{display:flex}
+  section{padding:64px 20px}
+  .hero-horario{gap:24px}
+  .galeria{grid-template-columns:1fr;grid-auto-rows:220px}
+  .galeria .ancha{grid-column:span 1}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo" aria-label="Cortado, inicio">
+      <!-- EDITAR: nombre del negocio -->
+      <span class="logo-marca">Cortado</span>
+      <span class="logo-punto" aria-hidden="true"></span>
+    </a>
+    <nav aria-label="Navegación principal">
+      <button class="hamburguesa" id="botonMenu" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul id="menuNav">
+        <li><a href="#carta">Carta</a></li>
+        <li><a href="#origen">Origen</a></li>
+        <li><a href="#tienda">Tienda</a></li>
+        <li><a href="#eventos">Eventos</a></li>
+        <li><a href="#visita">Visitanos</a></li>
+        <!-- EDITAR: número de WhatsApp del cliente -->
+        <li><a class="btn-reserva" href="https://wa.me/5491100000000?text=Hola!%20Quiero%20reservar%20una%20mesa" target="_blank" rel="noopener">Reservar mesa</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<div class="hero">
+  <div class="hero-contenido">
+    <p class="hero-eyebrow">Café de especialidad · Tostado propio</p>
+    <h1>El café,<br>tomado <em>en serio.</em></h1>
+    <p class="hero-desc">Tostamos grano de origen todas las semanas y lo servimos como se merece: espresso preciso, métodos filtrados y una barra donde el barista tiene tiempo para charlar. Sin apuro, sin vasos de cartón.</p>
+    <div class="hero-ctas">
+      <a href="#carta" class="btn-primario">Ver la carta</a>
+      <a href="#metodo" class="btn-texto">Cómo lo preparamos</a>
+    </div>
+    <!-- EDITAR: horarios reales -->
+    <div class="hero-horario">
+      <div class="horario-item"><strong>Lun a Vie</strong><span>8 — 20 hs</span></div>
+      <div class="horario-item"><strong>Sáb y Dom</strong><span>9 — 21 hs</span></div>
+    </div>
+  </div>
+  <figure class="hero-foto">
+    <img src="https://images.pexels.com/photos/6612738/pexels-photo-6612738.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Barista preparando café pour over en la barra" loading="eager">
+    <div class="sello" aria-hidden="true">
+      <strong>100%</strong>
+      <span>Tostado<br>en casa</span>
+    </div>
+  </figure>
+</div>
+
+<!-- ============ MARQUESINA (firma) ============ -->
+<div class="marquesina" aria-hidden="true">
+  <div class="marquesina-track">
+    <span>Espresso</span><span class="sep">·</span><span>Flat white</span><span class="sep">·</span><span>V60</span><span class="sep">·</span><span>Cold brew</span><span class="sep">·</span><span>Chemex</span><span class="sep">·</span><span>Aeropress</span><span class="sep">·</span><span>Cortado</span><span class="sep">·</span><span>Grano de origen</span><span class="sep">·</span><span>Espresso</span><span class="sep">·</span><span>Flat white</span><span class="sep">·</span><span>V60</span><span class="sep">·</span><span>Cold brew</span><span class="sep">·</span><span>Chemex</span><span class="sep">·</span><span>Aeropress</span><span class="sep">·</span><span>Cortado</span><span class="sep">·</span><span>Grano de origen</span><span class="sep">·</span>
+  </div>
+</div>
+
+<!-- ============ CARTA ============ -->
+<section id="carta">
+  <div class="contenedor">
+    <div class="encabezado">
+      <span class="etiqueta">Nuestra carta</span>
+      <h2 class="titulo">Café de barra y algo <em>rico</em> al lado</h2>
+    </div>
+    <!-- EDITAR: productos y precios reales del cliente -->
+    <div class="carta">
+      <div class="carta-grupo">
+        <h3>Espresso <span class="nota">Base leche opcional</span></h3>
+        <div class="item-carta"><div class="item-info"><div class="nom">Espresso</div><div class="desc">Simple o doble, de nuestro blend de la casa</div></div><div class="item-precio">$1.800</div></div>
+        <div class="item-carta"><div class="item-info"><div class="nom">Cortado</div><div class="desc">El clásico, con la proporción justa</div></div><div class="item-precio">$2.100</div></div>
+        <div class="item-carta"><div class="item-info"><div class="nom">Flat white</div><div class="desc">Doble ristretto y leche texturada</div></div><div class="item-precio">$2.900</div></div>
+        <div class="item-carta"><div class="item-info"><div class="nom">Cappuccino</div><div class="desc">Con espuma cremosa y cacao</div></div><div class="item-precio">$2.900</div></div>
+        <div class="item-carta"><div class="item-info"><div class="nom">Latte</div><div class="desc">Suave, ideal para acompañar</div></div><div class="item-precio">$3.100</div></div>
+      </div>
+      <div class="carta-grupo">
+        <h3>Métodos y fríos <span class="nota">Grano de origen</span></h3>
+        <div class="item-carta"><div class="item-info"><div class="nom">V60 / Chemex</div><div class="desc">Filtrado de origen único, preguntá por el del día</div></div><div class="item-precio">$3.400</div></div>
+        <div class="item-carta"><div class="item-info"><div class="nom">Aeropress</div><div class="desc">Cuerpo limpio y notas bien definidas</div></div><div class="item-precio">$3.200</div></div>
+        <div class="item-carta"><div class="item-info"><div class="nom">Cold brew</div><div class="desc">24 horas de extracción en frío</div></div><div class="item-precio">$3.300</div></div>
+        <div class="item-carta"><div class="item-info"><div class="nom">Medialuna</div><div class="desc">De manteca, horneadas en el día</div></div><div class="item-precio">$1.200</div></div>
+        <div class="item-carta"><div class="item-info"><div class="nom">Budín de limón</div><div class="desc">Casero, con glaseado</div></div><div class="item-precio">$2.400</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MÉTODO ============ -->
+<section class="seccion-metodo" id="metodo">
+  <div class="contenedor">
+    <div class="encabezado">
+      <span class="etiqueta" style="color:var(--tostado-claro)">Del grano a la taza</span>
+      <h2 class="titulo">Tres pasos, <em>cero atajos</em></h2>
+      <p class="sub">Lo que hace distinto a un café de especialidad no es la máquina: es el cuidado en cada etapa. Así lo hacemos nosotros.</p>
+    </div>
+    <div class="pasos">
+      <div class="paso">
+        <span class="num" aria-hidden="true">01</span>
+        <h3>Tostamos</h3>
+        <p>Traemos grano verde de productores seleccionados y lo tostamos en lotes chicos cada semana. Fresco de verdad, nunca estacionado meses en un depósito.</p>
+      </div>
+      <div class="paso">
+        <span class="num" aria-hidden="true">02</span>
+        <h3>Calibramos</h3>
+        <p>Cada mañana ajustamos molienda y extracción según la humedad del día. El mismo café puede necesitar un punto distinto, y lo buscamos hasta que está perfecto.</p>
+      </div>
+      <div class="paso">
+        <span class="num" aria-hidden="true">03</span>
+        <h3>Servimos</h3>
+        <p>En taza de cerámica, en la barra, con tiempo. Te contamos qué estás tomando y de dónde viene. Tomar café también es una charla.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ORIGEN DE LOS GRANOS ============ -->
+<section class="seccion-origen" id="origen">
+  <div class="contenedor">
+    <div class="grilla-origen">
+      <div class="origen-texto">
+        <span class="etiqueta">De dónde viene tu café</span>
+        <h2 class="titulo">Cada grano tiene <em>una historia</em></h2>
+        <p>No compramos café anónimo. Trabajamos con productores y fincas que conocemos, y sabemos exactamente de qué región, altura y variedad viene cada partida. Eso es lo que hace que un café sepa a algo y no solo a "amargo".</p>
+        <p>Rotamos los orígenes según la temporada de cosecha, así que siempre hay algo nuevo para probar en la barra. Preguntale al barista cuál está corriendo esta semana.</p>
+        <!-- EDITAR: orígenes reales que trabaja el cliente -->
+        <div class="origenes-lista">
+          <div class="origen-fila">
+            <span class="origen-bandera" aria-hidden="true">🇧🇷</span>
+            <div class="origen-info"><div class="pais">Brasil · Cerrado Mineiro</div><div class="notas">Chocolate, maní, cuerpo redondo</div></div>
+            <span class="origen-tueste medio">Tueste medio</span>
+          </div>
+          <div class="origen-fila">
+            <span class="origen-bandera" aria-hidden="true">🇨🇴</span>
+            <div class="origen-info"><div class="pais">Colombia · Huila</div><div class="notas">Caramelo, panela, acidez suave</div></div>
+            <span class="origen-tueste medio">Tueste medio</span>
+          </div>
+          <div class="origen-fila">
+            <span class="origen-bandera" aria-hidden="true">🇪🇹</span>
+            <div class="origen-info"><div class="pais">Etiopía · Yirgacheffe</div><div class="notas">Floral, cítrico, muy aromático</div></div>
+            <span class="origen-tueste claro">Tueste claro</span>
+          </div>
+        </div>
+      </div>
+      <figure class="foto-origen">
+        <img src="https://images.pexels.com/photos/4109743/pexels-photo-4109743.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Granos de café de distintos orígenes" loading="lazy">
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALERÍA ============ -->
+<section id="galeria" style="padding-bottom:0">
+  <div class="contenedor">
+    <div class="encabezado">
+      <span class="etiqueta">El lugar</span>
+      <h2 class="titulo">Un rincón para <em>quedarse</em></h2>
+    </div>
+    <div class="galeria">
+      <figure class="alta"><img src="https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Latte art en taza de cerámica" loading="lazy"></figure>
+      <figure class="ancha"><img src="https://images.pexels.com/photos/930402/pexels-photo-930402.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Interior cálido de la cafetería" loading="lazy"></figure>
+      <figure><img src="https://images.pexels.com/photos/4109743/pexels-photo-4109743.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Granos de café tostados" loading="lazy"></figure>
+      <figure><img src="https://images.pexels.com/photos/459265/pexels-photo-459265.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Preparación de café filtrado" loading="lazy"></figure>
+      <figure class="ancha"><img src="https://images.pexels.com/photos/851555/pexels-photo-851555.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Taza de café sobre mesa de madera" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HISTORIA ============ -->
+<section id="historia">
+  <div class="contenedor">
+    <div class="grilla-historia">
+      <figure class="foto-historia">
+        <img src="https://images.pexels.com/photos/4350057/pexels-photo-4350057.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Barista sonriendo detrás de la barra" loading="lazy">
+      </figure>
+      <div class="historia">
+        <span class="etiqueta">Nuestra historia</span>
+        <p class="cita-historia">"Abrimos porque queríamos el café que no encontrábamos en el barrio."</p>
+        <p>Empezamos tostando para nosotros, en casa, probando granos hasta encontrar los que nos volaban la cabeza. Un día decidimos abrir la puerta y compartirlo. Hoy seguimos con la misma obsesión: que cada taza que sale de la barra sea la mejor que probaste esta semana.</p>
+        <p>No somos una cadena ni queremos serlo. Somos el café donde el que atiende sabe tu nombre y cómo te gusta el cortado.</p>
+        <!-- EDITAR: nombre real de los dueños -->
+        <div class="firma">El equipo de Cortado<span>Lomas de Zamora</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GRANOS PARA LLEVAR ============ -->
+<section id="tienda">
+  <div class="contenedor">
+    <div class="encabezado">
+      <span class="etiqueta">Llevate el café a casa</span>
+      <h2 class="titulo">Nuestros granos, <em>en tu cocina</em></h2>
+      <p class="sub">El mismo café que tomás en la barra, tostado por nosotros, para que lo prepares en casa. Molido al momento como te guste, o en grano entero.</p>
+    </div>
+    <!-- EDITAR: productos y precios reales de café en grano -->
+    <div class="grilla-tienda">
+      <div class="producto">
+        <div class="producto-foto">
+          <span class="producto-badge">Más vendido</span>
+          <img src="https://images.pexels.com/photos/4109743/pexels-photo-4109743.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Bolsa de café blend de la casa" loading="lazy">
+        </div>
+        <div class="producto-cuerpo">
+          <div class="p-origen">Blend de la casa</div>
+          <h3>Cortado Signature</h3>
+          <p class="p-desc">Nuestro blend estrella. Equilibrado, dulce y con cuerpo. El que va perfecto con leche o solo.</p>
+          <div class="producto-precio"><span class="precio">$8.500</span><span class="peso">Bolsa 250g</span></div>
+        </div>
+      </div>
+      <div class="producto">
+        <div class="producto-foto">
+          <img src="https://images.pexels.com/photos/851555/pexels-photo-851555.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Café de origen Colombia" loading="lazy">
+        </div>
+        <div class="producto-cuerpo">
+          <div class="p-origen">Origen único · Colombia</div>
+          <h3>Huila Filtrado</h3>
+          <p class="p-desc">Notas a caramelo y panela, acidez suave. Ideal para métodos filtrados como V60 o Chemex.</p>
+          <div class="producto-precio"><span class="precio">$10.900</span><span class="peso">Bolsa 250g</span></div>
+        </div>
+      </div>
+      <div class="producto">
+        <div class="producto-foto">
+          <img src="https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Café de origen Etiopía" loading="lazy">
+        </div>
+        <div class="producto-cuerpo">
+          <div class="p-origen">Origen único · Etiopía</div>
+          <h3>Yirgacheffe</h3>
+          <p class="p-desc">Floral y cítrico, muy aromático. Para el que quiere descubrir a qué más puede saber un café.</p>
+          <div class="producto-precio"><span class="precio">$11.900</span><span class="peso">Bolsa 250g</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EVENTOS / CATAS ============ -->
+<section class="seccion-eventos" id="eventos">
+  <div class="contenedor">
+    <div class="encabezado">
+      <span class="etiqueta" style="color:var(--tostado-claro)">Agenda del mes</span>
+      <h2 class="titulo">Pasan <em>cosas</em> en Cortado</h2>
+      <p class="sub">No somos solo un café para pasar: armamos catas, talleres y encuentros para los que quieren saber más. Reservá tu lugar por WhatsApp, los cupos son limitados.</p>
+    </div>
+    <!-- EDITAR: eventos reales del cliente -->
+    <div class="grilla-eventos">
+      <div class="evento">
+        <div class="evento-fecha"><div class="dia">12</div><div class="mes">Jul</div></div>
+        <div class="evento-info">
+          <h3>Cata de orígenes</h3>
+          <p>Probamos a ciegas tres cafés de distintos países y aprendés a distinguir sus notas. No hace falta saber nada, solo tener ganas.</p>
+          <span class="hora">Sábado · 17 hs · Cupo 8 personas</span>
+        </div>
+      </div>
+      <div class="evento">
+        <div class="evento-fecha"><div class="dia">19</div><div class="mes">Jul</div></div>
+        <div class="evento-info">
+          <h3>Taller de métodos filtrados</h3>
+          <p>Te enseñamos a preparar un V60 y una Aeropress como en la barra, para que lo repliques en casa. Incluye café para llevar.</p>
+          <span class="hora">Sábado · 16 hs · Cupo 6 personas</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESEÑAS ============ -->
+<section id="resenas">
+  <div class="contenedor">
+    <div class="encabezado">
+      <span class="etiqueta">Lo que dicen de nosotros</span>
+      <h2 class="titulo">La gente <em>vuelve</em></h2>
+    </div>
+    <!-- EDITAR: reseñas reales del cliente (Google, Instagram, etc.) -->
+    <div class="grilla-resenas">
+      <div class="resena">
+        <div class="resena-estrellas" aria-label="5 de 5 estrellas">★★★★★</div>
+        <p class="resena-texto">"El mejor flat white de la zona sur, sin exagerar. Se nota que les importa el café de verdad."</p>
+        <div class="resena-autor">
+          <span class="resena-avatar" aria-hidden="true">M</span>
+          <div><div class="nom">Martina G.</div><div class="fuente">Google Reseñas</div></div>
+        </div>
+      </div>
+      <div class="resena">
+        <div class="resena-estrellas" aria-label="5 de 5 estrellas">★★★★★</div>
+        <p class="resena-texto">"Voy todos los sábados. El lugar es hermoso y el barista siempre te recomienda algo nuevo para probar."</p>
+        <div class="resena-autor">
+          <span class="resena-avatar" aria-hidden="true">J</span>
+          <div><div class="nom">Julián R.</div><div class="fuente">Google Reseñas</div></div>
+        </div>
+      </div>
+      <div class="resena">
+        <div class="resena-estrellas" aria-label="5 de 5 estrellas">★★★★★</div>
+        <p class="resena-texto">"Compré los granos para casa y no vuelvo atrás. Otro nivel comparado con el café de supermercado."</p>
+        <div class="resena-autor">
+          <span class="resena-avatar" aria-hidden="true">C</span>
+          <div><div class="nom">Carolina F.</div><div class="fuente">Instagram</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VISITANOS ============ -->
+<section class="seccion-visita" id="visita">
+  <div class="contenedor">
+    <div class="encabezado">
+      <span class="etiqueta">Pasá a tomar algo</span>
+      <h2 class="titulo">Te esperamos <em>con la máquina lista</em></h2>
+    </div>
+    <div class="grilla-visita">
+      <div class="tarjeta-visita">
+        <span class="v-icono" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2C8 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3-7-7-7Z" fill="#B98155"/><circle cx="12" cy="9" r="2.6" fill="#F3EBDE"/></svg></span>
+        <h3>Dónde estamos</h3>
+        <!-- EDITAR: dirección real -->
+        <p>Av. Ejemplo 1234</p>
+        <p>Lomas de Zamora, Buenos Aires</p>
+      </div>
+      <div class="tarjeta-visita">
+        <span class="v-icono" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#B98155" stroke-width="2.2"/><path d="M12 7v5l3.5 2" stroke="#B98155" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+        <h3>Horarios</h3>
+        <!-- EDITAR: horarios reales -->
+        <p>Lunes a viernes: 8 a 20 hs</p>
+        <p>Sábados y domingos: 9 a 21 hs</p>
+      </div>
+      <div class="tarjeta-visita">
+        <span class="v-icono" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Z" fill="#B98155"/></svg></span>
+        <h3>Reservas y pedidos</h3>
+        <!-- EDITAR: WhatsApp real -->
+        <p>WhatsApp: 11 0000-0000</p>
+        <p>Reservá tu mesa o pedí para llevar</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" class="seccion-visita">
+  <div class="contenedor">
+    <div class="encabezado" style="text-align:center;margin-left:auto;margin-right:auto">
+      <span class="etiqueta" style="justify-content:center">Preguntas frecuentes</span>
+      <h2 class="titulo">Todo lo que <em>querés saber</em></h2>
+    </div>
+    <!-- EDITAR: preguntas y respuestas reales del cliente -->
+    <div class="faq-lista">
+      <div class="faq-item">
+        <button class="faq-pregunta" aria-expanded="false">¿Se puede reservar mesa?<span class="faq-signo" aria-hidden="true">+</span></button>
+        <div class="faq-respuesta"><p>Sí, reservás por WhatsApp y te guardamos el lugar. Recomendamos reservar los fines de semana, que se llena bastante. Para grupos grandes, avisanos con un día de anticipación.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-pregunta" aria-expanded="false">¿Tienen opciones sin TACC o veganas?<span class="faq-signo" aria-hidden="true">+</span></button>
+        <div class="faq-respuesta"><p>Tenemos leches vegetales (almendra, avena) para todos los cafés, sin costo extra en algunos casos. En pastelería siempre hay alguna opción apta; preguntá al llegar por las del día.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-pregunta" aria-expanded="false">¿Puedo comprar café en grano para llevar?<span class="faq-signo" aria-hidden="true">+</span></button>
+        <div class="faq-respuesta"><p>Claro. Vendemos nuestro blend de la casa y cafés de origen en bolsas de 250g. Te lo damos en grano entero o molido según el método que uses en casa. Si no sabés cuál elegir, te asesoramos.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-pregunta" aria-expanded="false">¿Hacen café para llevar (take away)?<span class="faq-signo" aria-hidden="true">+</span></button>
+        <div class="faq-respuesta"><p>Sí, podés pedir cualquier café de la carta para llevar. Si querés adelantarlo, escribinos por WhatsApp y lo dejamos listo para que pases a buscarlo sin esperar.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-pregunta" aria-expanded="false">¿Aceptan tarjeta y billeteras virtuales?<span class="faq-signo" aria-hidden="true">+</span></button>
+        <div class="faq-respuesta"><p>Aceptamos efectivo, tarjetas de débito y crédito, y transferencias / billeteras virtuales. Todas las opciones habituales, sin problema.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta-final">
+  <div class="contenedor">
+    <h2 class="titulo">¿Nos visitás <em>esta semana?</em></h2>
+    <p>Reservá tu mesa por WhatsApp o simplemente pasá: siempre hay un lugar en la barra y un café recién tostado esperándote.</p>
+    <!-- EDITAR: WhatsApp real -->
+    <a href="https://wa.me/5491100000000?text=Hola!%20Quiero%20reservar%20una%20mesa" class="btn-primario" target="_blank" rel="noopener">Reservar por WhatsApp</a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <!-- EDITAR: nombre del negocio -->
+      <div class="footer-marca">Cortado</div>
+      <small>Café de especialidad · Lomas de Zamora</small>
+    </div>
+    <div class="credito">
+      <span class="credito-label">Sitio creado por</span>
+      <a href="https://instagram.com/flowbitai" target="_blank" rel="noopener">FlowbitAI</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ CHATBOT ============ -->
+<button class="chat-boton" id="chatBoton" aria-label="Abrir asistente virtual">
+  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M12 3C7 3 3 6.6 3 11c0 2.4 1.2 4.5 3.1 6L5.5 21l4-1.6c.8.2 1.6.3 2.5.3 5 0 9-3.6 9-8s-4-8-9-8Z" fill="#F3EBDE"/>
+    <circle cx="8.5" cy="11" r="1.3" fill="#2A1B12"/><circle cx="12" cy="11" r="1.3" fill="#2A1B12"/><circle cx="15.5" cy="11" r="1.3" fill="#2A1B12"/>
+  </svg>
+</button>
+
+<div class="chat-panel" id="chatPanel" role="dialog" aria-label="Asistente virtual de Cortado">
+  <div class="chat-header">
+    <span class="punto" aria-hidden="true"></span>
+    <div class="chat-header-texto">
+      <strong>Asistente de Cortado</strong>
+      <span>Te respondemos al toque ☕</span>
+    </div>
+    <button class="chat-cerrar" id="chatCerrar" aria-label="Cerrar chat">✕</button>
+  </div>
+  <div class="chat-mensajes" id="chatMensajes"></div>
+  <div class="chat-input-zona">
+    <input type="text" id="chatInput" placeholder="Escribí tu consulta..." maxlength="500" autocomplete="off">
+    <button class="chat-enviar" id="chatEnviar">Enviar</button>
+  </div>
+</div>
+
+<script>
+/* ============ MENÚ MÓVIL ============ */
+const botonMenu = document.getElementById('botonMenu');
+const menuNav = document.getElementById('menuNav');
+botonMenu.addEventListener('click', () => {
+  const abierto = menuNav.classList.toggle('abierto');
+  botonMenu.classList.toggle('abierto', abierto);
+  botonMenu.setAttribute('aria-expanded', abierto);
+});
+menuNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  menuNav.classList.remove('abierto');
+  botonMenu.classList.remove('abierto');
+  botonMenu.setAttribute('aria-expanded', 'false');
+}));
+
+/* ============ FAQ ACORDEÓN ============ */
+document.querySelectorAll('.faq-pregunta').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const estabaAbierto = item.classList.contains('abierto');
+    // Cerrar todos
+    document.querySelectorAll('.faq-item').forEach(i => {
+      i.classList.remove('abierto');
+      i.querySelector('.faq-pregunta').setAttribute('aria-expanded', 'false');
+    });
+    // Abrir el clickeado (si no estaba ya abierto)
+    if (!estabaAbierto) {
+      item.classList.add('abierto');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
+});
+
+/* ============ CHATBOT ============ */
+const chatBoton = document.getElementById('chatBoton');
+const chatPanel = document.getElementById('chatPanel');
+const chatCerrar = document.getElementById('chatCerrar');
+const chatMensajes = document.getElementById('chatMensajes');
+const chatInput = document.getElementById('chatInput');
+const chatEnviar = document.getElementById('chatEnviar');
+
+const LIMITE_HISTORIAL = 10;
+let historial = [];
+let esperandoRespuesta = false;
+
+function agregarMensaje(texto, clase) {
+  const div = document.createElement('div');
+  div.className = 'msg ' + clase;
+  div.textContent = texto;
+  chatMensajes.appendChild(div);
+  chatMensajes.scrollTop = chatMensajes.scrollHeight;
+  return div;
+}
+
+function abrirChat() {
+  chatPanel.classList.add('abierto');
+  if (chatMensajes.children.length === 0) {
+    agregarMensaje('¡Hola! Soy el asistente de Cortado ☕ Preguntame por la carta, horarios, métodos de café o reservas. ¿En qué te ayudo?', 'bot');
+  }
+  chatInput.focus();
+}
+
+chatBoton.addEventListener('click', () => {
+  chatPanel.classList.contains('abierto') ? chatPanel.classList.remove('abierto') : abrirChat();
+});
+chatCerrar.addEventListener('click', () => chatPanel.classList.remove('abierto'));
+
+async function enviarMensaje() {
+  const texto = chatInput.value.trim().slice(0, 500);
+  if (!texto || esperandoRespuesta) return;
+
+  chatInput.value = '';
+  agregarMensaje(texto, 'usuario');
+  historial.push({ role: 'user', content: texto });
+  if (historial.length > LIMITE_HISTORIAL) historial = historial.slice(-LIMITE_HISTORIAL);
+
+  esperandoRespuesta = true;
+  chatEnviar.disabled = true;
+  const escribiendo = agregarMensaje('Escribiendo...', 'bot escribiendo');
+
+  try {
+    const res = await fetch('/.netlify/functions/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: historial })
+    });
+    const data = await res.json();
+    escribiendo.remove();
+
+    if (data.error) {
+      agregarMensaje('Uy, tuve un problema para responder. Probá de nuevo en un ratito o escribinos por WhatsApp.', 'bot');
+    } else {
+      agregarMensaje(data.reply, 'bot');
+      historial.push({ role: 'assistant', content: data.reply });
+      if (historial.length > LIMITE_HISTORIAL) historial = historial.slice(-LIMITE_HISTORIAL);
+    }
+  } catch (e) {
+    escribiendo.remove();
+    agregarMensaje('No pude conectarme. Revisá tu internet o escribinos por WhatsApp.', 'bot');
+  }
+
+  esperandoRespuesta = false;
+  chatEnviar.disabled = false;
+  chatInput.focus();
+}
+
+chatEnviar.addEventListener('click', enviarMensaje);
+chatInput.addEventListener('keydown', e => { if (e.key === 'Enter') enviarMensaje(); });
+</script>
+
+</body>
+</html>
